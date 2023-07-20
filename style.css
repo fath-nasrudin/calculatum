@@ -1,0 +1,46 @@
+/* Default styles for elements */
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #001127;
+  color: white;
+}
+
+a {
+  text-decoration: none;
+  color: #ff8b32;
+  ;
+}
+
+.container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.main {
+  flex: 1;
+}
+
+.header,
+.footer {
+  padding: 16px;
+  background-color: rgba(255, 255, 255, 0.200);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header {
+  justify-content: space-between;
+}
+
+.logo {
+  font-size: 32px;
+  font-weight: 900;
+}
