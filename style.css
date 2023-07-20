@@ -22,10 +22,6 @@ a {
   flex-direction: column;
 }
 
-.main {
-  flex: 1;
-}
-
 .header,
 .footer {
   padding: 16px;
@@ -43,4 +39,62 @@ a {
 .logo {
   font-size: 32px;
   font-weight: 900;
+}
+
+.main {
+  flex: 1;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.calculator {
+  border: 1px solid white;
+  border-radius: 16px;
+  width: 300px;
+  height: 500px;
+  padding: 16px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.calculator__display {
+  background-color: #ffffff29;
+  height: 20%;
+  padding: 16px;
+  border-radius: 8px 8px 0 0;
+
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+
+.calculator__keypads {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.row {
+  flex: 1;
+
+  display: flex;
+  gap: 8px;
+}
+
+.row>* {
+  flex: 1;
+}
+
+/* Add border radius to the bottom keypad */
+.key-0 {
+  border-bottom-left-radius: 8px;
+}
+
+.equal-operator {
+  border-bottom-right-radius: 8px;
 }
