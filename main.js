@@ -1,29 +1,22 @@
-const add = (a, b) => a + b;
-const subtract = (a, b) => a - b;
-const multiply = (a, b) => a * b;
-const divide = (a, b) => a / b;
-
-let firstNumber = null;
-let secondNumber = null;
-let operator = null;
-
-const operate = (operator, firstNumber, secondNumber) => {
-  switch (operator) {
-    case '+':
-      return add(firstNumber, secondNumber);
-    case '-':
-      return subtract(firstNumber, secondNumber);
-    case '*':
-      return multiply(firstNumber, secondNumber);
-    case '/':
-      return divide(firstNumber, secondNumber);
-    default:
-      return 'Something went wrong!';
-  }
+const calculator = {
+  _add: (a, b) => a + b,
+  _subtract: (a, b) => a - b,
+  _multiply: (a, b) => a * b,
+  _divide: (a, b) => a / b,
+  _operate(operator, firstNumber, secondNumber) {
+    firstNumber = Number(firstNumber);
+    secondNumber = Number(secondNumber);
+    switch (operator) {
+      case '+':
+        return this._add(firstNumber, secondNumber);
+      case '-':
+        return this._subtract(firstNumber, secondNumber);
+      case '*':
+        return this._multiply(firstNumber, secondNumber);
+      case '/':
+        return this._divide(firstNumber, secondNumber);
+      default:
+        return 'Something went wrong!';
+    }
+  },
 };
-
-// simple test
-// console.log(operate('*', 2, 5) === 10);
-// console.log(operate('/', -20, 5) === -4);
-// console.log(operate('+', 2, 5) === 7);
-// console.log(operate('-', 2, 5) === -3);
