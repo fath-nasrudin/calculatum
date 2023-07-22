@@ -57,7 +57,7 @@ const webUI = {
     const lastCharIsOperator = helper.isOperator(lastChar);
     const secondLastCharIsOperator = helper.isOperator(secondLastChar);
     const newValueIsOperator = helper.isOperator(newValue);
-    if (displayValue === 0) {
+    if (displayValue === 0 || displayValue === '0') {
       this.setDisplayValue(newValue);
     } else {
       if (
