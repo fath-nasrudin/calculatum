@@ -36,6 +36,9 @@ const helper = {
   splitNumbersAndOperators: (string) => {
     return string.split(/([-+*/])/g);
   },
+  isOperator: (char) => {
+    return char === '+' || char === '-' || char === '*' || char === '/';
+  },
 };
 
 const webUI = {
@@ -48,9 +51,30 @@ const webUI = {
   },
   addLastDisplayValue(newValue) {
     let displayValue = this.getDisplayValue();
+    let lastIndex = displayValue.length - 1;
+    let lastChar = displayValue[lastIndex];
+    let secondLastChar = displayValue[lastIndex - 1];
+    const lastCharIsOperator = helper.isOperator(lastChar);
+    const secondLastCharIsOperator = helper.isOperator(secondLastChar);
+    const newValueIsOperator = helper.isOperator(newValue);
     if (displayValue === 0) {
       this.setDisplayValue(newValue);
     } else {
+      if (
+        lastCharIsOperator &&
+        secondLastCharIsOperator &&
+        newValueIsOperator
+      ) {
+        return;
+      }
+      if (lastCharIsOperator && newValueIsOperator && newValue !== '-') {
+        // change the last char into newValue
+        displayValue = displayValue.split('');
+        displayValue[lastIndex] = newValue;
+        displayValue = displayValue.join('');
+        this.setDisplayValue(displayValue);
+        return;
+      }
       this.setDisplayValue(displayValue + newValue);
     }
   },
