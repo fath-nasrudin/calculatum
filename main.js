@@ -19,4 +19,21 @@ const calculator = {
         return 'Something went wrong!';
     }
   },
+  calculate(stringOperation) {
+    const arrValue = helper.splitNumbersAndOperators(stringOperation);
+    let result = null;
+    while (arrValue.length > 0) {
+      let firstNumber = result ? result : arrValue.shift();
+      let operator = arrValue.shift();
+      let secondNumber = arrValue.shift();
+      result = this._operate(operator, firstNumber, secondNumber);
+    }
+    return result;
+  },
+};
+
+const helper = {
+  splitNumbersAndOperators: (string) => {
+    return string.split(/([-+*/])/g);
+  },
 };
