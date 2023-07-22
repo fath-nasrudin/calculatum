@@ -85,7 +85,6 @@ const webUI = {
     equalButton.addEventListener('click', this.equalButtonHandler.bind(webUI));
 
     const clearButton = document.querySelector('.clear-operator');
-    console.log(clearButton);
     clearButton.addEventListener('click', this.clearHandler.bind(webUI));
   },
 };
