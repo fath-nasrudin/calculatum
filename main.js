@@ -97,7 +97,7 @@ const webUI = {
   },
   equalButtonHandler(e) {
     const result = calculator.calculate(this.getDisplayValue());
-    this.uiSetAndUpdateDisplayValue(result);
+    this.uiSetAndUpdateDisplayValue(result.toString());
   },
   clearHandler(e) {
     this.uiSetAndUpdateDisplayValue(0);
