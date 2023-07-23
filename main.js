@@ -3,6 +3,7 @@ const calculator = {
   _subtract: (a, b) => a - b,
   _multiply: (a, b) => a * b,
   _divide: (a, b) => a / b,
+
   _operate(operator, firstNumber, secondNumber) {
     firstNumber = Number(firstNumber);
     secondNumber = Number(secondNumber);
@@ -19,6 +20,7 @@ const calculator = {
         return 'Something went wrong!';
     }
   },
+
   calculate(stringOperation) {
     const arrValue = helper.splitNumbersAndOperators(stringOperation);
     let result = null;
@@ -39,9 +41,11 @@ const helper = {
   splitNumbersAndOperators: (string) => {
     return string.split(/([-+*/])/g).filter((item) => item !== '');
   },
+
   isOperator: (char) => {
     return char === '+' || char === '-' || char === '*' || char === '/';
   },
+
   isPointAppear(string) {
     const arrayOfOperations = this.splitNumbersAndOperators(string);
     let lastNumber = arrayOfOperations[arrayOfOperations.length - 1];
@@ -51,12 +55,15 @@ const helper = {
 
 const webUI = {
   displayValue: '0',
+
   getDisplayValue() {
     return this.displayValue;
   },
+
   setDisplayValue(value) {
     this.displayValue = value.toString();
   },
+
   addLastDisplayValue(newValue) {
     let displayValue = this.getDisplayValue();
     let lastIndex = displayValue.length - 1;
@@ -90,30 +97,37 @@ const webUI = {
       this.setDisplayValue(displayValue + newValue);
     }
   },
+
   removeLastDisplayValue() {
     let value = this.getDisplayValue().split('');
     value.pop();
     this.setDisplayValue(value.join(''));
   },
+
   uiUpdateDisplayValue() {
     const calculatorDisplay = document.querySelector('#calculatorDisplay');
     calculatorDisplay.textContent = this.getDisplayValue();
   },
+
   uiSetAndUpdateDisplayValue(value) {
     this.setDisplayValue(value);
     this.uiUpdateDisplayValue();
   },
+
   keypadHandler(e) {
     this.addLastDisplayValue(e.currentTarget.value);
     this.uiUpdateDisplayValue();
   },
+
   equalButtonHandler(e) {
     const result = calculator.calculate(this.getDisplayValue());
     this.uiSetAndUpdateDisplayValue(result.toString());
   },
+
   clearHandler(e) {
     this.uiSetAndUpdateDisplayValue(0);
   },
+
   backspaceHandler(e) {
     if (this.getDisplayValue().length === 1) {
       this.uiSetAndUpdateDisplayValue(0);
@@ -122,6 +136,7 @@ const webUI = {
     this.removeLastDisplayValue();
     this.uiUpdateDisplayValue();
   },
+
   populateKeypadListeners(e) {
     const keyNumbers = document.querySelectorAll(
       '.key-num, .add-operator, .subtract-operator, .multiply-operator, .divide-operator'
