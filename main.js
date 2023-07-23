@@ -42,12 +42,12 @@ const helper = {
 };
 
 const webUI = {
-  displayValue: 0,
+  displayValue: '0',
   getDisplayValue() {
     return this.displayValue;
   },
   setDisplayValue(value) {
-    this.displayValue = value;
+    this.displayValue = value.toString();
   },
   addLastDisplayValue(newValue) {
     let displayValue = this.getDisplayValue();
@@ -57,7 +57,7 @@ const webUI = {
     const lastCharIsOperator = helper.isOperator(lastChar);
     const secondLastCharIsOperator = helper.isOperator(secondLastChar);
     const newValueIsOperator = helper.isOperator(newValue);
-    if ((displayValue === 0 || displayValue === '0') && !newValueIsOperator) {
+    if (displayValue === '0' && !newValueIsOperator) {
       this.setDisplayValue(newValue);
     } else {
       if (
