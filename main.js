@@ -25,7 +25,10 @@ const calculator = {
     while (arrValue.length > 0) {
       let firstNumber = result ? result : arrValue.shift();
       let operator = arrValue.shift();
-      let secondNumber = arrValue.shift();
+      let minus = null;
+      // if there are minus as second operator, combine it with the secondNumber
+      if (arrValue[0] === '-') minus = arrValue.shift();
+      let secondNumber = minus ? minus + arrValue.shift() : arrValue.shift();
       result = this._operate(operator, firstNumber, secondNumber);
     }
     return result;
