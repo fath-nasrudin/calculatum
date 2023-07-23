@@ -42,6 +42,11 @@ const helper = {
   isOperator: (char) => {
     return char === '+' || char === '-' || char === '*' || char === '/';
   },
+  isPointAppear(string) {
+    const arrayOfOperations = this.splitNumbersAndOperators(string);
+    let lastNumber = arrayOfOperations[arrayOfOperations.length - 1];
+    return lastNumber.search(/[.]/) >= 0;
+  },
 };
 
 const webUI = {
@@ -60,7 +65,7 @@ const webUI = {
     const lastCharIsOperator = helper.isOperator(lastChar);
     const secondLastCharIsOperator = helper.isOperator(secondLastChar);
     const newValueIsOperator = helper.isOperator(newValue);
-    if (displayValue === '0' && !newValueIsOperator) {
+    if (displayValue === '0' && !newValueIsOperator && newValue !== '.') {
       this.setDisplayValue(newValue);
     } else {
       if (
@@ -78,6 +83,10 @@ const webUI = {
         this.setDisplayValue(displayValue);
         return;
       }
+      if (newValue === '.' && helper.isPointAppear(displayValue)) {
+        return;
+      }
+      if (newValue === '.' && lastCharIsOperator) newValue = `0${newValue}`;
       this.setDisplayValue(displayValue + newValue);
     }
   },

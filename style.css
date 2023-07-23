@@ -92,7 +92,7 @@ a {
 }
 
 /* Add border radius to the bottom keypad */
-.key-0 {
+.key-dot {
   border-bottom-left-radius: 8px;
 }
 
