@@ -34,7 +34,7 @@ const calculator = {
 
 const helper = {
   splitNumbersAndOperators: (string) => {
-    return string.split(/([-+*/])/g);
+    return string.split(/([-+*/])/g).filter((item) => item !== '');
   },
   isOperator: (char) => {
     return char === '+' || char === '-' || char === '*' || char === '/';
