@@ -78,6 +78,11 @@ const webUI = {
       this.setDisplayValue(displayValue + newValue);
     }
   },
+  removeLastDisplayValue() {
+    let value = this.getDisplayValue().split('');
+    value.pop();
+    this.setDisplayValue(value.join(''));
+  },
   uiUpdateDisplayValue() {
     const calculatorDisplay = document.querySelector('#calculatorDisplay');
     calculatorDisplay.textContent = this.getDisplayValue();
@@ -97,6 +102,14 @@ const webUI = {
   clearHandler(e) {
     this.uiSetAndUpdateDisplayValue(0);
   },
+  backspaceHandler(e) {
+    if (this.getDisplayValue().length === 1) {
+      this.uiSetAndUpdateDisplayValue(0);
+      return;
+    }
+    this.removeLastDisplayValue();
+    this.uiUpdateDisplayValue();
+  },
   populateKeypadListeners(e) {
     const keyNumbers = document.querySelectorAll(
       '.key-num, .add-operator, .subtract-operator, .multiply-operator, .divide-operator'
@@ -110,6 +123,12 @@ const webUI = {
 
     const clearButton = document.querySelector('.clear-operator');
     clearButton.addEventListener('click', this.clearHandler.bind(webUI));
+
+    const backspaceButton = document.querySelector('.key-backspace');
+    backspaceButton.addEventListener(
+      'click',
+      this.backspaceHandler.bind(webUI)
+    );
   },
 };
 

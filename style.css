@@ -86,7 +86,8 @@ a {
   gap: 8px;
 }
 
-.row>* {
+.row>*,
+.row button {
   flex: 1;
 }
 
