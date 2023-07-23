@@ -99,3 +99,7 @@ a {
 .equal-operator {
   border-bottom-right-radius: 8px;
 }
+
+.key-operator {
+  background-color: #ff8b32;
+}
