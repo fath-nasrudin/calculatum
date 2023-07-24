@@ -178,7 +178,23 @@ const webUI = {
       this.backspaceHandler.bind(webUI)
     );
   },
+  populateKeyboardListeners(e) {
+    document.addEventListener('keydown', (e) => {
+      if (/[0-9*/+-.]/.test(e.key)) {
+        this.addLastDisplayValue(e.key);
+        this.uiUpdateDisplayValue();
+      } else if (e.key === '=' || e.key === 'Enter') {
+        this.equalButtonHandler();
+      } else if (e.key === 'Backspace') {
+        this.removeLastDisplayValue();
+        this.uiUpdateDisplayValue();
+      } else if (e.key === 'Delete') {
+        this.clearHandler();
+      }
+    });
+  },
 };
 
 webUI.uiUpdateDisplayValue();
 webUI.populateKeypadListeners();
+webUI.populateKeyboardListeners();
