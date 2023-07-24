@@ -25,6 +25,8 @@ const calculator = {
     stringOperation = helper.removeOperatorAtEnd(stringOperation);
     const arrValue = helper.splitNumbersAndOperators(stringOperation);
     let result = null;
+    if (arrValue.length <= 1) return arrValue[0];
+
     while (arrValue.length > 0) {
       let firstNumber = result ? result : arrValue.shift();
       let operator = arrValue.shift();
