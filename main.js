@@ -36,7 +36,14 @@ const calculator = {
       let secondNumber = minus ? minus + arrValue.shift() : arrValue.shift();
       result = this._operate(operator, firstNumber, secondNumber);
     }
+    result = this.changeDecimalDigit(result);
     return result;
+  },
+
+  changeDecimalDigit(number, totalDecimalDigit = 5) {
+    number = Number(number);
+    let setter = Math.pow(10, totalDecimalDigit);
+    return Math.round(number * setter) / setter;
   },
 };
 
