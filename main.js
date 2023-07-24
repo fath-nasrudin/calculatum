@@ -72,6 +72,11 @@ const helper = {
     }
     return string.join('');
   },
+
+  populateYearDisplay() {
+    const yearDisplay = document.querySelector('#yearDisplay');
+    yearDisplay.textContent = ` ${new Date().getFullYear()}`;
+  },
 };
 
 const webUI = {
@@ -198,3 +203,4 @@ const webUI = {
 webUI.uiUpdateDisplayValue();
 webUI.populateKeypadListeners();
 webUI.populateKeyboardListeners();
+helper.populateYearDisplay();
