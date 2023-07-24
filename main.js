@@ -22,6 +22,7 @@ const calculator = {
   },
 
   calculate(stringOperation) {
+    stringOperation = helper.removeOperatorAtEnd(stringOperation);
     const arrValue = helper.splitNumbersAndOperators(stringOperation);
     let result = null;
     while (arrValue.length > 0) {
@@ -50,6 +51,16 @@ const helper = {
     const arrayOfOperations = this.splitNumbersAndOperators(string);
     let lastNumber = arrayOfOperations[arrayOfOperations.length - 1];
     return lastNumber.search(/[.]/) >= 0;
+  },
+
+  removeOperatorAtEnd(string) {
+    string = string.split('');
+    let lastChar = string[string.length - 1];
+    while (this.isOperator(lastChar)) {
+      string.pop();
+      lastChar = string[string.length - 1];
+    }
+    return string.join('');
   },
 };
 
